@@ -1,6 +1,7 @@
 import streamlit
 import pandas
 import requests
+import snowflake.connector
 streamlit.title('My mom new healthy diner')
 streamlit.header('Breakfast Favorites')
 streamlit.text('🥣  Omega 3 & Blueberry Oatmeal')
@@ -25,8 +26,6 @@ streamlit.dataframe(fruityvice_normalized)
 
 fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
 streamlit.write('The user entered ', fruit_choice)
-
-import snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
